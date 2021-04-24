@@ -1,4 +1,5 @@
 const path = require("path");
+const MyWebPackPlugin = require('./my-webpack-plugin.js');
 
 module.exports = {
   mode: "development",
@@ -24,7 +25,10 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+
+  ]
   /**
    * TODO: 아래 플러그인을 추가해서 번들 결과를 만들어 보세요.
    * 1. BannerPlugin: 결과물에 빌드 시간을 출력하세요.
