@@ -1,0 +1,27 @@
+{
+  "name": "ide",
+  "version": "1.0.0",
+  "description": "ide setting",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./node_modules/.bin/webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/judy-leems/ide.git"
+  },
+  "author": "Judy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/judy-leems/ide/issues"
+  },
+  "homepage": "https://github.com/judy-leems/ide#readme",
+  "dependencies": {
+    "react": "^17.0.1"
+  },
+  "devDependencies": {
+    "webpack": "^4.46.0",
+    "webpack-cli": "^4.2.0"
+  }
+}
