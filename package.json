@@ -34,5 +34,19 @@
   "bugs": {
     "url": "https://github.com/jeonghwan-kim/lecture-frontend-dev-env/issues"
   },
-  "homepage": "https://github.com/jeonghwan-kim/lecture-frontend-dev-env#readme"
+  "homepage": "https://github.com/jeonghwan-kim/lecture-frontend-dev-env#readme",
+  "dependencies": {
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "lint-staged": "^10.5.4",
+    "prettier": "^2.2.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": "eslint --fix"
+  }
 }
