@@ -3,10 +3,14 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
+const mode = process.env.NODE_ENV || "development";
 
 module.exports = {
   // TODO: 환경변수 NODE_ENV에 따라 development나 production 값을 설정하세요 
-  mode: "development",
+  mode,
   entry: {
     main: "./src/app.js"
   },
@@ -71,7 +75,31 @@ module.exports = {
     new CleanWebpackPlugin(),
     ...(process.env.NODE_ENV === "production"
       ? [new MiniCssExtractPlugin({ filename: `[name].css` })]
-      : [])
-  ]
+      : []),
+    new CopyPlugin([
+      {
+        from: "./node_modules/axios/dist/axios.min.js",
+        to: "./axios.min.js", // 목적지 파일에 들어간다
+      },
+    ]),
+  ],
   // TODO: 여기에 최적화 설정을 구성하세요 
+  optimization: {
+    minimizer: 
+      mode === "production" 
+      ? [
+          new OptimizeCSSAssetsPlugin(),
+          new TerserPlugin({
+            terserOptions: {
+              compress: {
+                drop_console: true, // 콘솔 로그를 제거한다
+              },
+            },
+          }),
+        ]
+      : [],
+  },
+  externals: {
+    axios: 'axios'
+  }
 };
